@@ -4,7 +4,7 @@ jest.mock('./getUser', () => {
         getUser: (login) => {
             if (login === 'exist-ok') {
                 return { login, password: 'ok' }
-            } else if (login === 'exist-ok'){
+            } else if (login === 'exist-wrong-pass'){
                 return {login, password: 'bad password'}
             }
         }
@@ -17,6 +17,6 @@ describe('login function', () => {
     })
     it('wrong password', async () => {
         const result = await login('exist-wrong-pass', 'ok')
-        expect(result).toBe(404)
+        expect(result).toBe(401)
     })
 })
