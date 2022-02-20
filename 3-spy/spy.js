@@ -2,6 +2,7 @@
 exports.createOrder = async function(userId, items, totalPrice) {
     await exports.saveOrder(userId, items)
     await exports.addBonuses(userId, totalPrice)
+    await exports.addBonuses('userReferral', totalPrice)
     await exports.updateStocks(items)
 }
 
